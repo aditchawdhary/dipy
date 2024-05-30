@@ -1,4 +1,3 @@
-from __future__ import division, print_function, absolute_import
 """This is a helper module for dipy.tracking.utils"""
 
 from warnings import warn

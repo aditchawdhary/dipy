@@ -3,7 +3,6 @@
 Testing cross-validation analysis
 
 """
-from __future__ import division, print_function, absolute_import
 import numpy as np
 import numpy.testing as npt
 import nibabel as nib

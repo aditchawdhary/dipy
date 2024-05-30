@@ -1,5 +1,4 @@
 ''' Utility functions for file formats '''
-from __future__ import division, print_function, absolute_import
 
 import numpy as np
 from nibabel import Nifti1Image

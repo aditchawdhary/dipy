@@ -17,7 +17,6 @@ Examples
 For more information on VTK there many neat examples in
 http://www.vtk.org/Wiki/VTK/Tutorials/External_Tutorials
 """
-from __future__ import division, print_function, absolute_import
 from warnings import warn
 
 from dipy.utils.six.moves import xrange

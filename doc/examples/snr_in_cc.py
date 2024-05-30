@@ -28,8 +28,6 @@ First, we compute the tensor model in a brain mask (see the :ref:`reconst_dti`
 example for further explanations).
 
 """
-
-from __future__ import division, print_function
 import nibabel as nib
 import numpy as np
 from dipy.data import fetch_stanford_hardi, read_stanford_hardi

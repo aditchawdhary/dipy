@@ -1,4 +1,3 @@
-from __future__ import division, print_function, absolute_import
 import logging
 from dipy.align.reslice import reslice
 from dipy.io.image import load_nifti, save_nifti

@@ -1,4 +1,3 @@
-from __future__ import division
 from _warnings import warn
 
 import os

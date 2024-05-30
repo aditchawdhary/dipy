@@ -1,4 +1,3 @@
-from __future__ import division, print_function, absolute_import
 
 from os.path import splitext
 from dipy.utils.six import string_types

@@ -1,7 +1,6 @@
 """ Testing DTI
 
 """
-from __future__ import division, print_function, absolute_import
 
 import numpy as np
 from nose.tools import (assert_true, assert_equal,

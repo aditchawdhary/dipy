@@ -1,5 +1,4 @@
 """ Classes and functions for fitting ivim model """
-from __future__ import division, print_function, absolute_import
 
 from distutils.version import LooseVersion
 

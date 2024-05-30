@@ -46,7 +46,6 @@ And the letters A-D represent the following points in
     D = [ 2.5,  5.]
 
 """
-from __future__ import division, print_function, absolute_import
 
 from functools import wraps
 from warnings import warn
