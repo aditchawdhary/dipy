@@ -3,7 +3,6 @@
 from __future__ import division, print_function, absolute_import
 
 import numpy as np
-import random
 import dipy.reconst.dki as dki
 import dipy.reconst.dti as dti
 from numpy.testing import (assert_array_almost_equal, assert_array_equal,
@@ -21,6 +20,7 @@ from dipy.reconst.dki import (mean_kurtosis, carlson_rf,  carlson_rd,
 from dipy.core.sphere import Sphere
 from dipy.data import get_sphere
 from dipy.core.geometry import (sphere2cart, perpendicular_directions)
+import secrets
 
 fimg, fbvals, fbvecs = get_data('small_64D')
 bvals, bvecs = read_bvals_bvecs(fbvals, fbvecs)
@@ -256,8 +256,8 @@ def test_Wrotate_single_fiber():
     frac = [fie*100, (1 - fie)*100]
 
     # simulate single fiber not aligned to the x-axis
-    theta = random.uniform(0, 180)
-    phi = random.uniform(0, 320)
+    theta = secrets.SystemRandom().uniform(0, 180)
+    phi = secrets.SystemRandom().uniform(0, 320)
     angles = [(theta, phi), (theta, phi)]
     signal, dt, kt = multi_tensor_dki(gtab_2s, mevals, angles=angles,
                                       fractions=frac, snr=None)
@@ -451,8 +451,8 @@ def test_single_voxel_DKI_stats():
     ref_vals = np.array([AD, AK, RD, RK])
 
     # simulate fiber randomly oriented
-    theta = random.uniform(0, 180)
-    phi = random.uniform(0, 320)
+    theta = secrets.SystemRandom().uniform(0, 180)
+    phi = secrets.SystemRandom().uniform(0, 320)
     angles = [(theta, phi), (theta, phi)]
     mevals = np.array([[ADi, RDi, RDi], [ADe, RDe, RDe]])
     frac = [fie * 100, (1 - fie) * 100]
@@ -627,8 +627,8 @@ def test_kurtosis_maximum():
     RK = 3 * fie * (1-fie) * ((RDi-RDe) / RD) ** 2
 
     # prepare simulation:
-    theta = random.uniform(0, 180)
-    phi = random.uniform(0, 320)
+    theta = secrets.SystemRandom().uniform(0, 180)
+    phi = secrets.SystemRandom().uniform(0, 320)
     angles = [(theta, phi), (theta, phi)]
     mevals = np.array([[ADi, RDi, RDi], [ADe, RDe, RDe]])
     frac = [fie*100, (1 - fie)*100]
@@ -701,8 +701,8 @@ def test_multi_voxel_kurtosis_maximum():
                 fie = FIE[i, j, k]
                 mevals = np.array([[ADi, RDi, RDi], [ADe, RDe, RDe]])
                 frac = [fie*100, (1 - fie)*100]
-                theta = random.uniform(0, 180)
-                phi = random.uniform(0, 320)
+                theta = secrets.SystemRandom().uniform(0, 180)
+                phi = secrets.SystemRandom().uniform(0, 320)
                 angles = [(theta, phi), (theta, phi)]
                 signal, dt, kt = multi_tensor_dki(gtab_2s, mevals,
                                                   angles=angles,
