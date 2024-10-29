@@ -3,7 +3,6 @@
 from __future__ import division, print_function, absolute_import
 
 import numpy as np
-import random
 import dipy.reconst.dki_micro as dki_micro
 from numpy.testing import (assert_array_almost_equal, assert_almost_equal,
                            assert_, assert_raises)
@@ -14,6 +13,7 @@ from dipy.data import get_data
 from dipy.reconst.dti import (eig_from_lo_tri)
 
 from dipy.data import get_sphere
+import secrets
 
 fimg, fbvals, fbvecs = get_data('small_64D')
 bvals, bvecs = read_bvals_bvecs(fbvals, fbvecs)
@@ -64,8 +64,8 @@ for i in range(2):
             fie = FIE[i, j, k]
             mevals = np.array([[ADi, RDi, RDi], [ADe, RDe, RDe]])
             frac = [fie*100, (1 - fie)*100]
-            theta = random.uniform(0, 180)
-            phi = random.uniform(0, 320)
+            theta = secrets.SystemRandom().uniform(0, 180)
+            phi = secrets.SystemRandom().uniform(0, 320)
             angles = [(theta, phi), (theta, phi)]
             signal, dt, kt = multi_tensor_dki(gtab_2s, mevals,
                                               angles=angles,
@@ -85,8 +85,8 @@ def test_single_fiber_model():
     RDe = 0.00087
 
     # prepare simulation:
-    theta = random.uniform(0, 180)
-    phi = random.uniform(0, 320)
+    theta = secrets.SystemRandom().uniform(0, 180)
+    phi = secrets.SystemRandom().uniform(0, 320)
     angles = [(theta, phi), (theta, phi)]
     mevals = np.array([[ADi, RDi, RDi], [ADe, RDe, RDe]])
     frac = [fie*100, (1 - fie)*100]
@@ -242,8 +242,8 @@ def test_dki_micro_predict_single_voxel():
     RDe = 0.00087
 
     # prepare simulation:
-    theta = random.uniform(0, 180)
-    phi = random.uniform(0, 320)
+    theta = secrets.SystemRandom().uniform(0, 180)
+    phi = secrets.SystemRandom().uniform(0, 320)
     angles = [(theta, phi), (theta, phi)]
     mevals = np.array([[ADi, RDi, RDi], [ADe, RDe, RDe]])
     frac = [fie*100, (1 - fie)*100]
