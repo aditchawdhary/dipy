@@ -12,6 +12,7 @@ import inspect
 
 # version comparison
 from distutils.version import LooseVersion as V
+from security import safe_command
 
 
 def sh3(cmd):
@@ -46,7 +47,7 @@ def sh3(cmd):
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     """
-    p = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True)
+    p = safe_command.run(Popen, cmd, stdout=PIPE, stderr=PIPE, shell=True)
     out, err = p.communicate()
     retcode = p.returncode
     if retcode:
