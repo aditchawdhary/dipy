@@ -4,8 +4,6 @@
 
 import numpy as np
 
-import random
-
 from dipy.core.geometry import (sphere2cart, cart2sphere,
                                 nearest_pos_semi_def,
                                 sphere_distance,
@@ -29,6 +27,7 @@ from numpy.testing import (assert_array_equal, assert_array_almost_equal,
 
 from dipy.testing import sphere_points
 from itertools import permutations
+import secrets
 
 
 def test_vector_norm():
@@ -263,8 +262,8 @@ def test_perpendicular_directions():
     vectors_v = np.zeros((4, 3))
 
     for v in range(4):
-        theta = random.uniform(0, np.pi)
-        phi = random.uniform(0, 2*np.pi)
+        theta = secrets.SystemRandom().uniform(0, np.pi)
+        phi = secrets.SystemRandom().uniform(0, 2*np.pi)
         vectors_v[v] = sphere2cart(1., theta, phi)
     vectors_v[3] = [1, 0, 0]
 
