@@ -16,6 +16,7 @@ from dipy.io.dpy import Dpy
 
 import nibabel as nib
 from nibabel.tmpdirs import InTemporaryDirectory
+from security import safe_command
 
 _VAL_FMT = '   %e'
 
@@ -338,7 +339,7 @@ def pipe(cmd, print_sto=True, print_ste=True):
          Print standard error (stderr) or not (default: True)
 
     """
-    p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+    p = safe_command.run(Popen, cmd, shell=True, stdout=PIPE, stderr=PIPE)
     sto = p.stdout.readlines()
     ste = p.stderr.readlines()
     if print_sto:
@@ -395,7 +396,7 @@ def run_flirt_imgs(in_img, ref_img, dof=6, flags=''):
         nib.save(ref_img, 'ref.nii')
         cmd = 'flirt %s -dof %d -in in.nii -ref ref.nii -omat %s' % (
             flags, dof, omat)
-        proc = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+        proc = safe_command.run(Popen, cmd, shell=True, stdout=PIPE, stderr=PIPE)
         stdout, stderr = proc.communicate()
         if not os.path.isfile(omat):
             raise FSLError('Command "%s" failed somehow - stdout: %s\n'

@@ -17,6 +17,7 @@ import os
 from os.path import (dirname, join as pjoin, isfile, isdir, realpath, pathsep)
 
 from subprocess import Popen, PIPE
+from security import safe_command
 
 try:  # Python 2
     string_types = basestring,
@@ -150,7 +151,7 @@ class ScriptRunner(object):
                 env['PYTHONPATH'] = self.local_module_dir
             else:
                 env['PYTHONPATH'] = self.local_module_dir + pathsep + pypath
-        proc = Popen(cmd, stdout=PIPE, stderr=PIPE, env=env)
+        proc = safe_command.run(Popen, cmd, stdout=PIPE, stderr=PIPE, env=env)
         stdout, stderr = proc.communicate()
         if proc.poll() is None:
             proc.terminate()
